@@ -20,12 +20,14 @@ class DocumentTest {
       BiFunction<Document, Contract, Stream<ContractViolation>> faultyRefactoredIsValidAccordingTo = Document::faultyRefactoredIsValidAccordingTo;
       BiFunction<Document, Contract, Stream<ContractViolation>> faultyProceduralIsValidAccordingTo = Document::faultyProceduralIsValidAccordingTo;
       BiFunction<Document, Contract, Stream<ContractViolation>> proceduralIsValidAccordingTo = Document::proceduralIsValidAccordingTo;
+      BiFunction<Document, Contract, Stream<ContractViolation>> refactoredProceduralIsValidAccordingTo = Document::refactoredProceduralIsValidAccordingTo;
       BiFunction<Document, Contract, Stream<ContractViolation>> isValidAccordingTo = Document::isValidAccordingTo;
       return Stream.of(
             Arguments.of(Named.of("Faulty semi-functional, non separated methods",faultyIsValidAccordingTo)),
             Arguments.of(Named.of("Faulty semi-functional, separated methods",faultyRefactoredIsValidAccordingTo)),
             Arguments.of(Named.of("Faulty procedural",faultyProceduralIsValidAccordingTo)),
             Arguments.of(Named.of("Procedural",proceduralIsValidAccordingTo)),
+            Arguments.of(Named.of("Procedural without throwing exception",refactoredProceduralIsValidAccordingTo)),
             Arguments.of(Named.of("Functional",isValidAccordingTo))
       );
       //@formatter:on
