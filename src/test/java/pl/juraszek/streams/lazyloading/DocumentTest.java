@@ -72,7 +72,7 @@ class DocumentTest {
 
    @ParameterizedTest
    @MethodSource("validationMethods")
-   void shouldRejectWhenMultipleSectionSDoNotFulfillConstraint(
+   void shouldRejectWhenMultipleSectionsDoNotFulfillConstraint(
          BiFunction<Document, Contract, Stream<ContractViolation>> validationMethod) {
       //      given
       var contract = new Contract(Set.of(new SectionConstraint("Introduction", new SizeLimit(4)),
@@ -87,8 +87,7 @@ class DocumentTest {
 
       //      then
       assertThat(validationResult).map(ContractViolation::id)
-            .containsExactlyInAnyOrder(
-                  "SECTION_CONSTRAINT_VIOLATION", "SECTION_CONSTRAINT_VIOLATION");
+            .containsExactlyInAnyOrder("SECTION_CONSTRAINT_VIOLATION", "SECTION_CONSTRAINT_VIOLATION");
    }
 
    @ParameterizedTest
